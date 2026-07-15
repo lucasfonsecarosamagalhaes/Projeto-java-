@@ -14,11 +14,19 @@ public class Main {
     			System.out.println(" [3] CONSULTAR ALUNOS ");
     			System.out.println(" [4] EXCLUIR ALUNOS ");
     			System.out.println(" [0] SAIR");
-    			System.out.print("\nDigite a opcao desejada: ");
-    			opcao = leia.nextByte();
-    			if (opcao < 0 || opcao > 4) {
-    				System.out.println("opcao Invalida, digite novamente.\n");
-    			}
+				System.out.print("\nDigite a opcao desejada: ");
+				try {
+					if (!leia.hasNextLine()) {
+						opcao = 0;
+					} else {
+						opcao = Byte.parseByte(leia.nextLine().trim());
+					}
+				} catch (NumberFormatException e) {
+					opcao = -1;
+				}
+				if (opcao < 0 || opcao > 4) {
+					System.out.println("opcao Invalida, digite novamente.\n");
+				}
     		}while (opcao < 0 || opcao > 4);
 			
 			switch (opcao) {
